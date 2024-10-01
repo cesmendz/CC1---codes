@@ -1,0 +1,35 @@
+body {
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+  background-color: pink;
+}
+
+#decimal-input {
+  width: 30%;
+  padding: 10px;
+  font-size: 18px;
+}
+
+#convert-btn {
+  background-color: lightsalmon;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#convert-btn:hover {
+  background-color: salmon;
+}
+
+#binary-output {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+#history-output {
+  font-size: 18px;
+  margin-top: 20px;
+}
