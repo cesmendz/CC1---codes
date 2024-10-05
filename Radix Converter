@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+public class RadixConverter {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.print("Enter the original base (2-16, or 'STOP' to quit): ");
+            String input = scanner.nextLine().toUpperCase();
+
+            if (input.equals("STOP")) {
+                break;
+            }
+
+            try {
+                int originalBase = Integer.parseInt(input);
+                if (originalBase < 2 || originalBase > 16) {
+                    throw new NumberFormatException();
+                }
+
+                System.out.print("Enter the number to convert: ");
+                String numberToConvert = scanner.nextLine().toUpperCase();
+
+                if (!isValidNumber(numberToConvert, originalBase)) {
+                    System.out.println("Invalid number for the given base. Please try again.");
+                    continue;
+                }
+
+                System.out.println("Conversions:");
+                for (int targetBase = 2; targetBase <= 16; targetBase++) {
+                    String convertedNumber = convertBase(numberToConvert, originalBase, targetBase);
+                    System.out.println("Base " + targetBase + ": " + convertedNumber);
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number or 'STOP'.");
+            }
+        }
+    }
+
+    private static boolean isValidNumber(String number, int base) {
+        String validDigits = "0123456789ABCDEF";
+        for (char digit : number.toCharArray()) {
+            if (validDigits.indexOf(digit) >= base) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static String convertBase(String number, int originalBase, int targetBase) {
+        int decimalValue = Integer.parseInt(number, originalBase);
+        return Integer.toString(decimalValue, targetBase).toUpperCase();
+    }
+}
